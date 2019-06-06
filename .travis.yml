@@ -5,26 +5,26 @@ services:
 
 # build test version of React
 before_install:
-  - docker build -t rogerschmidt/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t jamiesonbates/react-test -f ./client/Dockerfile.dev ./client
 
 
 # Run tests
 script:
-  - docker run -e CI=true rogerschmidt/react-test npm test
+  - docker run -e CI=true jamiesonbates/react-test npm test
 
 # Build prod versions of all projects
 after_success:
-  - docker build -t rogerschmidt/multi-client ./client
-  - docker build -t rogerschmidt/multi-nginx ./nginx
-  - docker build -t rogerschmidt/multi-server ./server
-  - docker build -t rogerschmidt/multi-worker ./worker
+  - docker build -t jamiesonbates/multi-client ./client
+  - docker build -t jamiesonbates/multi-nginx ./nginx
+  - docker build -t jamiesonbates/multi-server ./server
+  - docker build -t jamiesonbates/multi-worker ./worker
   # login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push all to docker hub
-  - docker push rogerschmidt/multi-client
-  - docker push rogerschmidt/multi-nginx
-  - docker push rogerschmidt/multi-server
-  - docker push rogerschmidt/multi-worker
+  - docker push jamiesonbates/multi-client
+  - docker push jamiesonbates/multi-nginx
+  - docker push jamiesonbates/multi-server
+  - docker push jamiesonbates/multi-worker
 
 
 # Tell Elastic Beanstalk to update
