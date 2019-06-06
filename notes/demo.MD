@@ -9,3 +9,6 @@
 
 - For dev mode, you can utilize your pwd to auto refresh the container files (the container is pointed at your pwd).
 - You can make an exception that says you want to look for something within the container only (i.e. node_modules in the container, rather than pwd)
+
+- nginx reverse proxy...excessible from the world, has instructions on where to direct traffic
+- docker compose acts as pseudo dns so nginx can route traffic based on endpoint like /client /api
